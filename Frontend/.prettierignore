@@ -1,0 +1,46 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all node_modules:
+node_modules
+
+# Ignore macOS system files:
+.DS_Store
+
+# Ignore log files:
+*.log
+
+# Ignore source maps:
+*.map
+
+# Ignore environment variables:
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore public directory:
+public
+
+# Ignore version control directories:
+.git
+.gitignore
+
+# Ignore Vercel/Netlify directories:
+.vercel
+.netlify
+
+# Ignore configuration files for other tools:
+babel.config.js
+jest.config.js
+tailwind.config.js
+postcss.config.js
+
+# Ignore TypeScript declaration files:
+*.d.ts
+
+# Ignore lock files:
+package-lock.json
+yarn.lock
