@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Configuration files
+*.config.js
+*.config.json
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+*.tmp
+
+# Documentation
+docs/
+
+# Miscellaneous
+.DS_Store
+*.tar.gz
+*.zip
+*.bak
