@@ -1,53 +1,53 @@
 import React, { useState } from 'react';
-import Input from '../Input/Input';
+import axios from 'axios';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const [terms, setTerms] = useState(false);
     const [privacy, setPrivacy] = useState(false);
     const [showError, setShowError] = useState(false);
 
-    const handleRegister = () => {
+    const handleRegister = async(e) => {
+        e.preventDefault();
         if (!terms || !privacy) {
-            setShowError(true);
+            toast.error('Please agree to the terms and conditions and privacy policy');
         } else {
-            setShowError(false);
+            const res = await axios.post('http://localhost:5000/register', {
+                name,
+                email,
+                password
+            });
+            if (res.data.error) {
+                toast.error(res.data.error);
+            } else {
+                toast.success(res.data.message);
+            }
         }
     };
 
     return (
         <div className="flex flex-col items-center space-y-4 bg-[#e0f7f9] p-4 sm:p-6 lg:p-8">
             <div className="flex flex-col items-center space-y-4 bg-white shadow-xl rounded-lg p-4 sm:p-6 lg:p-8 w-full max-w-md">
-                <Input
-                    label="Full Name"
-                    id="fullname"
-                    placeholder="Enter your full name"
-                />
+                <div className="w-full">
+                    <label htmlFor="Name" className="text-lg font-bold">Name:</label>
+                    <input className='w-full p-2 border border-gray-300 rounded-md' type="text" placeholder="Enter your fullname" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
 
-                <Input
-                    label="Email"
-                    id="email"
-                    placeholder="Enter your email"
-                />
+                <div className="w-full">
+                    <label htmlFor="email" className="text-lg font-bold">Email:</label>
+                    <input className='w-full p-2 border border-gray-300 rounded-md' type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
 
-                <Input 
-                    label="Username"
-                    id="username"
-                    placeholder="Enter your username"
-                />
-
-                <Input
-                    label="Password"
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                />
-
-                <Input
-                    label="Confirm Password"
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Confirm your password"
-                />
+                <div className="w-full">
+                    <label htmlFor="password" className="text-lg font-bold">Password:</label>
+                    <input className='w-full p-2 border border-gray-300 rounded-md' type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
 
                 <div className="space-y-2 w-full">
                     <div className="flex items-center">
@@ -75,12 +75,6 @@ const Register = () => {
                     </div>
                 </div>
 
-                {
-                    showError && (
-                        <p className="text-red-500 text-sm">Please agree to the terms and conditions and privacy policy</p>
-                    )
-                }
-
                 <button 
                     className="bg-[#ffdd40] hover:bg-[#f5b921] text-[#1f5156] font-bold py-2 px-4 rounded w-full"
                     onClick={handleRegister}
@@ -93,6 +87,20 @@ const Register = () => {
                 <p>Already have an account?</p>
                 <a href="/login" className="text-[#f5b921] hover:underline">Login</a>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition: Flip
+            />
         </div>
     );
 };

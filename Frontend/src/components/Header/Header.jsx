@@ -21,9 +21,9 @@ function Header() {
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     <li className="nav-item">
                         <NavLink
-                        exact
+                        // exact
                         to="/"
-                        activeClassName="active"
+                        // activeClassName="active"
                         className="nav-links"
                         onClick={handleClick}
                         >
@@ -32,9 +32,9 @@ function Header() {
                     </li>
                     <li className="nav-item">
                         <NavLink
-                        exact
+                        // exact
                         to="/about"
-                        activeClassName="active"
+                        //  activeClassName="active"
                         className="nav-links"
                         onClick={handleClick}
                         >
@@ -43,9 +43,9 @@ function Header() {
                     </li>
                     <li className="nav-item">
                         <NavLink
-                        exact
+                        // exact
                         to="/login"
-                        activeClassName="active"
+                        // activeClassName="active"
                         className="nav-links"
                         onClick={handleClick}
                         >
@@ -54,9 +54,9 @@ function Header() {
                     </li>
                     <li className="nav-item">
                         <NavLink
-                        exact
+                        // exact
                         to="/register"
-                        activeClassName="active"
+                        // activeClassName="active"
                         className="nav-links"
                         onClick={handleClick}
                         >
