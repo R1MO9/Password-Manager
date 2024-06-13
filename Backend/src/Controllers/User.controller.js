@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
     const newUser = new User({ name, email, password: hashedPassword});
 
     await newUser.save();
-    console.log("User registered successfully");
+    console.log("User 👤 registered successfully");
     res.status(201).json({ message: "User registered successfully" });
 };
 
@@ -48,7 +48,7 @@ const loginUser = async (req, res) => {
         expiresIn: '1h'
     });
 
-    console.log("User logged in successfully");
+    console.log("User 👤 logged in successfully");
     return res.status(200).json({ result: existingUser, token });
 }
 

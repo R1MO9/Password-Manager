@@ -33,6 +33,17 @@ function Header() {
                     <li className="nav-item">
                         <NavLink
                         // exact
+                        to="/manage-password"
+                        // activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                        >
+                            Manage Password
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                        // exact
                         to="/about"
                         //  activeClassName="active"
                         className="nav-links"

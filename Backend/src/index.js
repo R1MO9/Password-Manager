@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import connectDB from './db/index.js';
 import { registerUser, loginUser } from './Controllers/User.controller.js';
+import { saveSitePassword } from './Controllers/Site.controller.js';
 
 
 const app = express();
@@ -12,8 +13,9 @@ app.use(bodyParser.json());
 
 connectDB();
 
-app.post('/register', registerUser);
-app.post('/login', loginUser);
+app.use('/save-password', saveSitePassword);
+app.use('/register', registerUser);
+app.use('/login', loginUser);
 
 
 app.listen(5000, () => {
