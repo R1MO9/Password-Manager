@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const SavePasswordCard = ({ onSave }) => {
+const SavePasswordCard = () => {
     const [username, setUsername] = useState('');
     const [siteName, setSiteName] = useState('');
     const [password, setPassword] = useState('');
@@ -22,20 +22,26 @@ const SavePasswordCard = ({ onSave }) => {
         if(!username || !siteName || !password) {
             return toast.error('Please fill all the fields');
         }
-
         try {
             const res = await axios.post('http://localhost:5000/save-password', {
                 siteName,
                 username,
-                password,
+                password
             });
 
-            if(res.status === 201) {
+            if (res.status === 201) {
                 toast.success('Password saved successfully');
-                onSave();
+            } else {
+                toast.error(res.data.message);
             }
         } catch (error) {
-            toast.error('Failed to save password');
+            if (error.response) {
+                toast.error(error.response.data.message || 'Error saving password. Please try again later.');
+            } else if (error.request) {
+                toast.error('No response from the server. Please try again later.');
+            } else {
+                toast.error('Error saving password. Please try again later.');
+            }
         }
     };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import PasswordCard from '../components/PasswordCard/PasswordCard.jsx';
+import PasswordCard from '../PasswordCard/PasswordCard.jsx';
 
 const ManagePassword = () => {
     const navigate = useNavigate();

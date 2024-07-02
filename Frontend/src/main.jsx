@@ -6,7 +6,7 @@ import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import Home from './components/Home/Home.jsx';
 import About from './components/About/About.jsx';
-import ManagePassword from './ManagePassword/ManagePassword.jsx';
+import ManagePassword from './components/ManagePassword/ManagePassword.jsx'
 import SavePasswordCard from './components/SavePasswordCard/SavePasswordCard.jsx';
 import './index.css';
 

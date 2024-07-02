@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,22 +10,31 @@ const Register = () => {
 
     const [terms, setTerms] = useState(false);
     const [privacy, setPrivacy] = useState(false);
-    const [showError, setShowError] = useState(false);
 
     const handleRegister = async(e) => {
         e.preventDefault();
         if (!terms || !privacy) {
             toast.error('Please agree to the terms and conditions and privacy policy');
-        } else {
+        }
+        try {
             const res = await axios.post('http://localhost:5000/register', {
                 name,
                 email,
                 password
             });
-            if (res.data.error) {
-                toast.error(res.data.error);
+
+            if (res.status === 201) {
+                toast.success('Registration successful');
             } else {
-                toast.success(res.data.message);
+                toast.error(res.data.message);
+            }
+        } catch (error) {
+            if (error.response) {
+                toast.error(error.response.data.message || 'Error registering. Please try again later.');
+            } else if (error.request) {
+                toast.error('No response from the server. Please try again later.');
+            } else {
+                toast.error('Error registering. Please try again later.');
             }
         }
     };

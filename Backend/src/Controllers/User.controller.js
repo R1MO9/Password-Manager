@@ -1,6 +1,7 @@
 import User from "../Models/User.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { generateFromEmail, generateUsername } from "unique-username-generator";
 
 const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
@@ -17,7 +18,11 @@ const registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = new User({ name, email, password: hashedPassword});
+    const username = generateFromEmail(
+        email
+    );
+
+    const newUser = new User({ name, email, password: hashedPassword, username});
 
     await newUser.save();
     console.log("User 👤 registered successfully");

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const SiteSchema = new mongoose.Schema({
     siteName: {
         type: String,
