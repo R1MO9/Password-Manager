@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import { isTokenExpired } from "../../../Utils/TokenDecode.js";
 
 function Header() {
-  const [click, setClick] = useState(false);
+    const [isTokenValid, setIsTokenValid] = useState(false);
+    const [click, setClick] = useState(false);
 
-  const handleClick = () => setClick(!click);
-  return (
+    const handleClick = () => setClick(!click);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        setIsTokenValid(!isTokenExpired(token));
+    }, []);
+    return (
     <>
         <nav className="navbar">
             <div className="nav-container">
@@ -52,28 +59,35 @@ function Header() {
                             About
                         </NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink
-                        // exact
-                        to="/login"
-                        // activeClassName="active"
-                        className="nav-links"
-                        onClick={handleClick}
-                        >
-                            Login
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink
-                        // exact
-                        to="/register"
-                        // activeClassName="active"
-                        className="nav-links"
-                        onClick={handleClick}
-                        >
-                            Register
-                        </NavLink>
-                    </li>
+                    {
+                        isTokenValid ? 
+                        (
+                            <li className="nav-item">
+                                <NavLink
+                                // exact
+                                to="/logout"
+                                // activeClassName="active"
+                                className="nav-links"
+                                onClick={handleClick}
+                            >
+                                    Logout
+                                </NavLink>
+                            </li>
+                        ) : (
+                            <li className="nav-item">
+                                <NavLink
+                                    // exact
+                                    to="/login"
+                                    // activeClassName="active"
+                                    className="nav-links"
+                                    onClick={handleClick}
+                                >
+                                    Login
+                                </NavLink>
+                            </li>
+                        )
+                    }
+                    
                 </ul>
             <div className="nav-icon" onClick={handleClick}>
                 {

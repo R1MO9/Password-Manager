@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 
 const SiteSchema = new mongoose.Schema({
+    user: {
+        type: String,
+        required: true
+    },
     siteName: {
         type: String,
         required: true

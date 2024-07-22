@@ -22,8 +22,10 @@ const SavePasswordCard = () => {
         if(!username || !siteName || !password) {
             return toast.error('Please fill all the fields');
         }
+        const user = JSON.parse(localStorage.getItem('user'));
         try {
             const res = await axios.post('http://localhost:5000/save-password', {
+                user,
                 siteName,
                 username,
                 password

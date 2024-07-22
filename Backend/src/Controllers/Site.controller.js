@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import Site from '../Models/Site.model.js';
 
 const saveSitePassword = async (req, res) => {
-    const { siteName, username, password } = req.body;
+    const { user, siteName, username, password } = req.body;
 
     if (!siteName || !username || !password) {
         return res.status(400).json({ message: "All fields are required" });
@@ -20,6 +20,7 @@ const saveSitePassword = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newSite = new Site({
+            user,
             siteName,
             username,
             password: hashedPassword
@@ -32,9 +33,6 @@ const saveSitePassword = async (req, res) => {
     }
 };
 
-const getSitePasswords = async (req, res) => {
-    const { username } = req.body;
-};
 
 
 

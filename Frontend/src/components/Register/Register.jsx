@@ -22,6 +22,7 @@ const Register = () => {
                 email,
                 password
             });
+            console.log(res.data.result.username);
 
             if (res.status === 201) {
                 toast.success('Registration successful');

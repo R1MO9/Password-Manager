@@ -19,14 +19,15 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const username = generateFromEmail(
-        email
+        email, 3
     );
 
     const newUser = new User({ name, email, password: hashedPassword, username});
 
     await newUser.save();
     console.log("User 👤 registered successfully");
-    res.status(201).json({ message: "User registered successfully" });
+
+    return res.status(201).json({ result: newUser });
 };
 
 const loginUser = async (req, res) => {
@@ -48,16 +49,34 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ message: "Password is incorrect" });
     }
 
-    const token = jwt.sign({ email: existingUser.email, id: existingUser._id
-    }, 'test secret', {
-        expiresIn: '1h'
-    });
+    await existingUser.save();
 
     console.log("User 👤 logged in successfully");
-    return res.status(200).json({ result: existingUser, token });
+    return res.status(200).json({ result: existingUser });
+}
+
+const logoutUser = async (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ message: "Email is required" });
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if(!existingUser) {
+        return res.status(400).json({ message: "User does not exist" });
+    }
+
+    existingUser.accessToken = "";
+    await existingUser.save();
+
+    console.log("User 👤 logged out successfully")
+    return res.status(200).json({ message: "User logged out successfully" });
 }
 
 export {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser
 };
