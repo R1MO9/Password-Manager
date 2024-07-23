@@ -26,11 +26,13 @@ const Login = () => {
         try {
             const res = await axios.post('http://localhost:5000/login', { email, password });
 
+            console.log(res);
+
             console.log( res.data.result.username);
     
             if (res.status === 200) {
                 toast.success('Login successful');
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('accessToken', res.data.accessToken);
                 localStorage.setItem('user', res.data.result.username);
             } else {
                 toast.error(res.data.message);
