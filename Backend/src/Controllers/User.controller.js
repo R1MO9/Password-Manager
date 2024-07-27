@@ -49,6 +49,8 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ message: "Password is incorrect" });
     }
 
+    console.log(process.env.ACCESS_TOKEN_SECRET);
+
     const accessToken = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
     existingUser.accessToken = accessToken;
 

@@ -40,5 +40,6 @@ Make sure you have the following installed on your machine:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/password-manager.git
+git clone https://github.com/<your-username>/password-manager.git
 cd password-manager
+install Node Package Module for Frontend and Backend

@@ -5,7 +5,7 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const SavePasswordCard = () => {
     const [username, setUsername] = useState('');
