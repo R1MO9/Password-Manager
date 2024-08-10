@@ -32,7 +32,7 @@ const Login = () => {
     
             if (res.status === 200) {
                 toast.success('Login successful');
-                localStorage.setItem('accessToken', res.data.accessToken);
+                localStorage.setItem('accessToken', res.data.result.accessToken);
                 localStorage.setItem('user', res.data.result.username);
             } else {
                 toast.error(res.data.message);
@@ -50,7 +50,7 @@ const Login = () => {
     
 
     return (
-        <div className="flex flex-col items-center p-4 sm:p-6 lg:p-8 bg-[#e0f7f9] min-h-screen">
+        <div className="flex flex-col items-center p-4 sm:p-6 lg:p-8 bg-[#e0f7f9]">
             <h1 className="text-4xl font-bold text-center mb-8 text-[#1f5156]">Login</h1>
 
             <form

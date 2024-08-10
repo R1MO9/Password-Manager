@@ -72,7 +72,6 @@ const logoutUser = async (req, res) => {
     if(!existingUser) {
         return res.status(400).json({ message: "User does not exist" });
     }
-
     existingUser.accessToken = "";
     await existingUser.save();
 

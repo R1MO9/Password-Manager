@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import { isTokenExpired } from "../../../Utils/TokenDecode.js";
 
 function Header() {
+    const navigate = useNavigate();
     const [isTokenValid, setIsTokenValid] = useState(false);
     const [click, setClick] = useState(false);
 
+    useEffect(() => {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            setIsTokenValid(!isTokenExpired(token));
+        } else {
+            navigate('/login')
+        }
+    }, [navigate]);
+
+
     const handleClick = () => setClick(!click);
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        setIsTokenValid(!isTokenExpired(token));
-    }, []);
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
+        setIsTokenValid(false);
+    };
+
     return (
     <>
         <nav className="navbar">
             <div className="nav-container">
                 <NavLink exact to="/" className="nav-logo">
-                    <span>CodeBucks</span>
+                    <span>SecureVault</span>
                     {/* <i className="fas fa-code"></i> */}
                     <span className="icon">
                     </span>
@@ -60,20 +73,8 @@ function Header() {
                         </NavLink>
                     </li>
                     {
-                        isTokenValid ? 
+                        !isTokenValid ? 
                         (
-                            <li className="nav-item">
-                                <NavLink
-                                // exact
-                                to="/logout"
-                                // activeClassName="active"
-                                className="nav-links"
-                                onClick={handleClick}
-                            >
-                                    Logout
-                                </NavLink>
-                            </li>
-                        ) : (
                             <li className="nav-item">
                                 <NavLink
                                     // exact
@@ -83,6 +84,18 @@ function Header() {
                                     onClick={handleClick}
                                 >
                                     Login
+                                </NavLink>
+                            </li>
+                            
+                        ) : (
+                            <li className="nav-item">
+                                <NavLink
+                                    // exact
+                                    // activeClassName="active"
+                                    className="nav-links"
+                                    onClick={handleLogout}
+                            >
+                                    Logout
                                 </NavLink>
                             </li>
                         )
@@ -97,7 +110,7 @@ function Header() {
         </div>
     </nav>
     </>
-  );
+    );
 }
 
 export default Header;

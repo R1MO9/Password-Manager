@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 
-const SavePasswordCard = () => {
+const SavePasswordCard = ({ onSave }) => {
     const [username, setUsername] = useState('');
     const [siteName, setSiteName] = useState('');
     const [password, setPassword] = useState('');
