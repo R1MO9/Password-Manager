@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <div className='flex flex-col sm:flex-row justify-between w-full p-8 bg-[#1f5156] text-white'>
+    <div className='flex flex-col sm:flex-row justify-between w-full p-8 bg-[#000000] text-white'>
       <div className='flex flex-col mb-4 sm:mb-0 sm:mr-4' key="project">
         <p className='font-bold text-[#ffdd40] mb-2'>Password Manager</p>
         <p className='text-[#f5b921] hover:text-white cursor-pointer'>About</p>

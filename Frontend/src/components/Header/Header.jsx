@@ -31,9 +31,8 @@ function Header() {
         <nav className="navbar">
             <div className="nav-container">
                 <NavLink exact to="/" className="nav-logo">
-                    <span>SecureVault</span>
-                    {/* <i className="fas fa-code"></i> */}
                     <span className="icon">
+                        SecureVault
                     </span>
                 </NavLink>
 
@@ -58,17 +57,6 @@ function Header() {
                         onClick={handleClick}
                         >
                             Manage Password
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink
-                        // exact
-                        to="/about"
-                        //  activeClassName="active"
-                        className="nav-links"
-                        onClick={handleClick}
-                        >
-                            About
                         </NavLink>
                     </li>
                     {
@@ -102,7 +90,7 @@ function Header() {
                     }
                     
                 </ul>
-            <div className="nav-icon" onClick={handleClick}>
+            <div className="nav-icon text-3xl" onClick={handleClick}>
                 {
                     click ? <RiCloseFill /> : <RiMenu3Fill />
                 }

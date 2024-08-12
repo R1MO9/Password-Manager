@@ -7,23 +7,17 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [terms, setTerms] = useState(false);
     const [privacy, setPrivacy] = useState(false);
 
-    const handleRegister = async(e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         if (!terms || !privacy) {
             toast.error('Please agree to the terms and conditions and privacy policy');
+            return;
         }
         try {
-            const res = await axios.post('http://localhost:5000/register', {
-                name,
-                email,
-                password
-            });
-            console.log(res.data.result.username);
-
+            const res = await axios.post('http://localhost:5000/register', { name, email, password });
             if (res.status === 201) {
                 toast.success('Registration successful');
             } else {
@@ -41,60 +35,83 @@ const Register = () => {
     };
 
     return (
-        <div className="flex flex-col items-center space-y-4 bg-[#e0f7f9] p-4 sm:p-6 lg:p-8">
-            <div className="flex flex-col items-center space-y-4 bg-white shadow-xl rounded-lg p-4 sm:p-6 lg:p-8 w-full max-w-md">
-                <div className="w-full">
-                    <label htmlFor="Name" className="text-lg font-bold">Name:</label>
-                    <input className='w-full p-2 border border-gray-300 rounded-md' type="text" placeholder="Enter your fullname" value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
-
-                <div className="w-full">
-                    <label htmlFor="email" className="text-lg font-bold">Email:</label>
-                    <input className='w-full p-2 border border-gray-300 rounded-md' type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-
-                <div className="w-full">
-                    <label htmlFor="password" className="text-lg font-bold">Password:</label>
-                    <input className='w-full p-2 border border-gray-300 rounded-md' type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-
-                <div className="space-y-2 w-full">
-                    <div className="flex items-center">
-                        <input 
-                            type="checkbox" 
-                            id="terms" 
-                            name="terms" 
-                            value="terms" 
-                            className="mr-2" 
-                            onChange={(e) => setTerms(e.target.checked)}
+        <div className="flex items-center justify-center bg-[#e0f7f9] py-20 px-4">
+            <div className="w-full max-w-lg bg-white shadow-2xl rounded-lg p-8 space-y-6">
+                <h2 className="text-2xl font-bold text-center text-[#1f5156]">Create Your Account</h2>
+                <form onSubmit={handleRegister} className="space-y-4">
+                    <div className="flex flex-col">
+                        <label htmlFor="name" className="text-sm font-semibold text-[#1f5156]">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffdd40]"
                         />
-                        <label htmlFor="terms">I agree to the terms and conditions</label>
                     </div>
 
-                    <div className="flex items-center">
-                        <input 
-                            type="checkbox" 
-                            id="privacy" 
-                            name="privacy" 
-                            value="privacy" 
-                            className="mr-2" 
-                            onChange={(e) => setPrivacy(e.target.checked)}
+                    <div className="flex flex-col">
+                        <label htmlFor="email" className="text-sm font-semibold text-[#1f5156]">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffdd40]"
                         />
-                        <label htmlFor="privacy">I agree to the privacy policy</label>
                     </div>
+
+                    <div className="flex flex-col">
+                        <label htmlFor="password" className="text-sm font-semibold text-[#1f5156]">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffdd40]"
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <div className="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="terms" 
+                                name="terms" 
+                                checked={terms}
+                                onChange={(e) => setTerms(e.target.checked)}
+                                className="h-4 w-4 text-[#1f5156] border-gray-300 rounded focus:ring-0 cursor-pointer"
+                            />
+                            <label htmlFor="terms" className="ml-2 text-sm text-[#1f5156]">I agree to the <a href="#" className="text-[#f5b921] hover:underline">terms and conditions</a></label>
+                        </div>
+
+                        <div className="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="privacy" 
+                                name="privacy" 
+                                checked={privacy}
+                                onChange={(e) => setPrivacy(e.target.checked)}
+                                className="h-4 w-4 text-[#1f5156] border-gray-300 rounded focus:ring-0 cursor-pointer"
+                            />
+                            <label htmlFor="privacy" className="ml-2 text-sm text-[#1f5156]">I agree to the <a href="#" className="text-[#f5b921] hover:underline">privacy policy</a></label>
+                        </div>
+                    </div>
+
+                    <button 
+                        type="submit"
+                        className="w-full bg-[#ffdd40] hover:bg-[#f5b921] text-[#1f5156] font-bold py-3 rounded-md transition duration-200"
+                    >
+                        Register
+                    </button>
+                </form>
+
+                <div className="text-center text-sm text-[#1f5156] mt-4">
+                    <p>Already have an account? <a href="/login" className="text-[#f5b921] hover:underline">Login</a></p>
                 </div>
-
-                <button 
-                    className="bg-[#ffdd40] hover:bg-[#f5b921] text-[#1f5156] font-bold py-2 px-4 rounded w-full"
-                    onClick={handleRegister}
-                >
-                    Register
-                </button>
-            </div>
-
-            <div className="flex gap-2 text-lg text-[#1f5156]">
-                <p>Already have an account?</p>
-                <a href="/login" className="text-[#f5b921] hover:underline">Login</a>
             </div>
 
             <ToastContainer
@@ -108,7 +125,6 @@ const Register = () => {
                 draggable
                 pauseOnHover
                 theme="light"
-                transition: Flip
             />
         </div>
     );
