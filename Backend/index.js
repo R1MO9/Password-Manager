@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import connectDB from './db/index.js';
-import UserRoute from './Routes/User.route.js';
+import connectDB from './src/db/index.js';
+import UserRoute from './src/Routes/User.route.js';
 
 import dotenv from 'dotenv';
 
