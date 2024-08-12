@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import config from '../../Config/Config.js';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -17,7 +18,7 @@ const Register = () => {
             return;
         }
         try {
-            const res = await axios.post('http://localhost:5000/register', { name, email, password });
+            const res = await axios.post(`${config.API_URL}/register`, { name, email, password });
             if (res.status === 201) {
                 toast.success('Registration successful');
             } else {
