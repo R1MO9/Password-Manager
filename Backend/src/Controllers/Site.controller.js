@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import Site from '../Models/Site.model.js';
+import Site from '../models/Site.model.js';
 import Cryptr from 'cryptr';
 import mongoose from "mongoose";
 
