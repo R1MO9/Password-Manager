@@ -13,19 +13,18 @@ function Header() {
         const token = localStorage.getItem('accessToken');
         if (token) {
             setIsTokenValid(!isTokenExpired(token));
-        } else {
-            navigate('/login')
         }
     }, [navigate]);
 
 
     const handleClick = () => setClick(!click);
 
-    const handleLogout = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('user');
-        setIsTokenValid(false);
-    };
+    // const handleLogout = () => {
+    //     const user = localStorage.getItem('user');
+    //     if(!user) {
+    //         toast.error('User not found. Please log in again.');
+    //     }
+    // }
 
     return (
     <>
@@ -91,9 +90,10 @@ function Header() {
                             <li className="nav-item">
                                 <NavLink
                                     // exact
+                                    to="/logout"
                                     // activeClassName="active"
                                     className="nav-links"
-                                    onClick={handleLogout}
+                                    // onClick={handleLogout}
                             >
                                     Logout
                                 </NavLink>

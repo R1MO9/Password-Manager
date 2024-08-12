@@ -5,6 +5,7 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'; 
 
 const SavePasswordCard = ({ onSave }) => {
@@ -17,6 +18,7 @@ const SavePasswordCard = ({ onSave }) => {
         setIsVisible(!isVisible);
     };
 
+    const navigate = useNavigate();
     const handleSave = async(e) => {
         e.preventDefault();
         if(!username || !siteName || !password) {
@@ -33,6 +35,10 @@ const SavePasswordCard = ({ onSave }) => {
 
             if (res.status === 201) {
                 toast.success('Password saved successfully');
+
+                setTimeout(() => {
+                    navigate('/manage-password');
+                }, 1500);
             } else {
                 toast.error(res.data.message);
             }
@@ -125,8 +131,8 @@ const SavePasswordCard = ({ onSave }) => {
         </div>
 
         <ToastContainer 
-            position="top-center"
-            autoClose={3000}
+            position="top-right"
+            autoClose={1000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
@@ -138,10 +144,6 @@ const SavePasswordCard = ({ onSave }) => {
 
         </div>
     );
-};
-
-SavePasswordCard.propTypes = {
-    onSave: PropTypes.func.isRequired,
 };
 
 export default SavePasswordCard;

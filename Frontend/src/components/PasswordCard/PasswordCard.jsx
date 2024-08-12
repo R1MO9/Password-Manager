@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash, FaCopy, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 
-const PasswordCard = ({ username, siteName, password }) => {
+const PasswordCard = ({ username, siteName, password, key }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
@@ -93,8 +93,8 @@ const PasswordCard = ({ username, siteName, password }) => {
                 </div>
             </div>
             <ToastContainer 
-                position="bottom-right"
-                autoClose={5000}
+                position="top-right"
+                autoClose={1000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -107,10 +107,5 @@ const PasswordCard = ({ username, siteName, password }) => {
     );
 };
 
-PasswordCard.propTypes = {
-    username: PropTypes.string.isRequired,
-    siteName: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-};
 
 export default PasswordCard;

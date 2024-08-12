@@ -8,6 +8,7 @@ import Home from './components/Home/Home.jsx';
 import About from './components/About/About.jsx';
 import ManagePassword from './components/ManagePassword/ManagePassword.jsx'
 import SavePasswordCard from './components/SavePasswordCard/SavePasswordCard.jsx';
+import Logout from './components/Logout/Logout.jsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="register" element={<Register />} />
           <Route path="manage-password" element={<ManagePassword />} />
           <Route path="save-password" element={<SavePasswordCard />} />
+          <Route path="logout" element={<Logout />} />
         </Routes>
       </Layout>
     </Router>

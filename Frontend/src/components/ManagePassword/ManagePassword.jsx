@@ -80,7 +80,7 @@ const ManagePassword = () => {
                 {passwords.length > 0 ? (
                     passwords.map((password) => (
                         <PasswordCard 
-                            key={password.id}
+                            key={password.length}
                             siteName={password.siteName}
                             username={password.username}
                             password={password.password}
@@ -92,7 +92,7 @@ const ManagePassword = () => {
             </div>
 
             <div className='mt-8 text-center'>
-                <img src='/vite.svg' alt='Secure' className='mx-auto w-24 h-24' />
+                <img src='/SecureVault.png' alt='Secure' className='mx-auto w-24 h-24' />
                 <h5 className='text-xl font-medium text-[#1f5156] mt-4'>
                     Safer than safe!
                 </h5>

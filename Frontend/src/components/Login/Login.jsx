@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,6 +17,8 @@ const Login = () => {
         }
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
@@ -31,9 +33,13 @@ const Login = () => {
             console.log( res.data.result.username);
     
             if (res.status === 200) {
-                toast.success('Login successful');
+                toast.success('Logged in successfully');
                 localStorage.setItem('accessToken', res.data.result.accessToken);
                 localStorage.setItem('user', res.data.result.username);
+
+                setTimeout(() => {
+                    navigate('/manage-password');
+                }, 1500);
             } else {
                 toast.error(res.data.message);
             }
@@ -106,7 +112,7 @@ const Login = () => {
 
             <ToastContainer
                 position="top-right"
-                autoClose={5000}
+                autoClose={1000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -114,7 +120,6 @@ const Login = () => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                theme="light"
             />
         </div>
     );
