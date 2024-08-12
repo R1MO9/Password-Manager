@@ -31,7 +31,7 @@ const PasswordCard = ({ username, siteName, password, key }) => {
         }
     
         try {
-            const res = await axios.delete('http://localhost:5000/remove-password', {
+            const res = await axios.delete(`${config.API_URL}/remove-password`, {
                 data: { user, siteName, username },
             });
     
