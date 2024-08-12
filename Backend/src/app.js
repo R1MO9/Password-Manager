@@ -17,11 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connectDB();
 
 app.use('/', UserRoute);
-// app.use('/save-password', saveSitePassword);
-// app.use('/register', registerUser);
-// app.use('/login', loginUser);
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log("🌻 Server running on port 5000");
 });
