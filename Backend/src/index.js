@@ -2,8 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import connectDB from './db/index.js';
-import { registerUser, loginUser } from './Controllers/User.controller.js';
-import { saveSitePassword, } from './Controllers/Site.controller.js';
 import UserRoute from './Routes/User.route.js';
 
 import dotenv from 'dotenv';
