@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { FaUserShield, FaLock, FaMobileAlt, FaShieldAlt, FaThumbsUp } from 'react-icons/fa';
-import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
   const navigate = useNavigate();

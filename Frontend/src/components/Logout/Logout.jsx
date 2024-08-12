@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button/Button';
 import { FaSave, FaUndo } from 'react-icons/fa';
+import config from '../../Config/Config.js';
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Logout = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:5000/logout', { password, username });
+            const res = await axios.post(`${config.API_URL}/logout`, { password, username });
 
             if (res.status === 200) {
                 toast.success('Logged out successfully');

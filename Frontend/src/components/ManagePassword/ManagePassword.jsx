@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordCard from '../PasswordCard/PasswordCard.jsx';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import config from '../../Config/Config.js';
 
 const ManagePassword = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ManagePassword = () => {
 
     const handleGetAllPasswords = async (user) => {
         try {
-            const res = await axios.get('http://localhost:5000/get-passwords', 
+            const res = await axios.get(`${config.API_URL}/get-passwords`, 
                 {
                     params: {
                         user: user

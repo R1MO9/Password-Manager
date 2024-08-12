@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { FaEye, FaEyeSlash, FaCopy, FaSave } from 'react-icons/fa';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
@@ -7,6 +6,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'; 
+import config from '../../Config/Config.js';
 
 const SavePasswordCard = ({ onSave }) => {
     const [username, setUsername] = useState('');
@@ -26,7 +26,7 @@ const SavePasswordCard = ({ onSave }) => {
         }
         const user = localStorage.getItem('user');
         try {
-            const res = await axios.post('http://localhost:5000/save-password', {
+            const res = await axios.post(`${config.API_URL}/save-password`, {
                 user,
                 siteName,
                 username,

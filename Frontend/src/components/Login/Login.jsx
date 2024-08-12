@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'; 
+import config from '../../Config/Config.js';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -26,11 +27,14 @@ const Login = () => {
             return;
         }
         try {
-            const res = await axios.post('http://localhost:5000/login', { email, password });
+            const res = await axios.post(`${config.API_URL}/login`, {
+                email,
+                password
+            });
 
             console.log(res);
 
-            console.log( res.data.result.username);
+            console.log(res.data.result.username);
     
             if (res.status === 200) {
                 toast.success('Logged in successfully');
