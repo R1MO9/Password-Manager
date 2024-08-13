@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FaEye, FaEyeSlash, FaCopy, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import config from '../../Config/Config';
 
 const PasswordCard = ({ username, siteName, password, key }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -36,9 +37,11 @@ const PasswordCard = ({ username, siteName, password, key }) => {
             });
     
             if(res.status === 200) {
-                window.location.reload();
                 console.log('Site removed successfully');
                 toast.success('Site removed successfully');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
             } else {
                 toast.error(res.data.message || 'Error removing site');
             }
