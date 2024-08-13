@@ -3,9 +3,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import connectDB from './src/db/index.js';
 import UserRoute from './src/Routes/User.route.js';
+import { registerUser, loginUser, getUser } from './src/Controllers/User.controller.js';
 
 import dotenv from 'dotenv';
-import User from './src/models/User.model.js';
 
 const app = express();
 dotenv.config();
@@ -21,10 +21,11 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.get('/allUser', async (req, res) => {
-    const reso = await User.find();
-    res.send(reso);
-});
+app.post('/register', registerUser);
+
+app.post('/login', loginUser);
+
+app.get('/user', getUser);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("🌻 Server running on port 5000");
