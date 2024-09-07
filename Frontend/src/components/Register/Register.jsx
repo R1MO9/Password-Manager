@@ -41,11 +41,11 @@ const Register = () => {
                 <h2 className="text-2xl font-bold text-center text-[#1f5156]">Create Your Account</h2>
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div className="flex flex-col">
-                        <label htmlFor="name" className="text-sm font-semibold text-[#1f5156]">Full Name</label>
+                        <label htmlFor="name" className="text-sm font-semibold text-[#1f5156]">Name</label>
                         <input
                             type="text"
                             id="name"
-                            placeholder="Enter your full name"
+                            placeholder="Enter your name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffdd40]"
