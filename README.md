@@ -1,8 +1,8 @@
-# Password Manager 🔐(On Process)
+# SecureVault 🔐
 
 ## Overview ℹ️
 
-Password Manager is a secure web application that allows users to store and manage their passwords. Users can log in using their email and securely store multiple passwords associated with different usernames and site names. All stored passwords are encrypted for security.
+SecureVault is a secure web application that allows users to store and manage their passwords. Users can log in using their email and securely store multiple passwords associated with different usernames and site names. All stored passwords are encrypted for security.
 
 ## Features ✨
 
